@@ -1,0 +1,28 @@
+version: '3.5'
+
+volumes:
+  light-baseimage:
+    driver: local
+
+services:
+  light-baseimage:
+    build:
+      context: ./example/multiple-process-image/
+      args:
+        - UBUNTU_VERSION=${UBUNTU_VERSION}
+    container_name: web_light-baseimage
+#   environment:
+#     UBUNTU_VERSION: ${UBUNTU_VERSION}
+#     YYYY:"Example Inc."
+#     ZZZZ:"example.org"
+#     WWWW:"xxx.yyy"
+#     
+    tty: true
+    stdin_open: true
+    volumes:
+#     - /etc/service_1/directory_1.d
+#     - /container/service/service_1/yyyy/zzzz/
+      - ./share:/mnt/share
+    ports:
+      - "5080:80"
+      - "5443:443"
